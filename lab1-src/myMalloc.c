@@ -207,95 +207,6 @@ size_t roundUp(size_t size) {
  *
  * @return A block satisfying the user's request
  */
-/*
-static inline header * allocate_object(size_t raw_size) {
-  // TODO implement allocation
-  (void) raw_size;
-  if(raw_size == 0) {
-	  return NULL;
-  }
-
-  size_t asize;
-  size_t rounded = roundUp(raw_size);
-
-  if (raw_size < 32) {
-	asize = 32;
-  } else {
-	//size_t headerSize = 24;
-	//size_t rounded = roundUp(raw_size);
-	asize = rounded + ALLOC_HEADER_SIZE;
-  }
-//task1-1
-  header * freelist;
-  header * block;
-
-  //int i = asize/8;
- // int i = 59;
- // freelist = &freelistSentinels[i-1];
-  
-  header * chunk = allocate_chunk(1024);
-  freelist->next = chunk;
-  freelist->prev = chunk;
-  chunk->next = freelist;
-  chunk->prev = freelist;
-
- // block = freelist->next;
-
-  //printf("aaaaaaaaa\n");
-  
-  int i = 0;
-
-  for(i = 0; i < N_LISTS; i++) {
-	  freelist = &freelistSentinels[i];
-	  block = freelist->next;
-	
-	  size_t blocksize = get_size(block);
-	  if((blocksize != 0) && (blocksize >= asize)) {
-		  break;
-	  }
-  }
-
-  size_t blsize = get_size(block);
-  //printf("blsize = %ld\n", blsize);
-
- // header * leftFp = get_header_from_offset(freelist, 0);
-  //header * rightFp = get_header_from_offset(block, blsize);
-
-  //set_state(leftFp, 2);
-  //set_state(rightFp, 2);
-  //set_size(leftFp, ALLOC_HEADER_SIZE);
-  //set_size(rightFp, ALLOC_HEADER_SIZE);
-  
- // insert_fenceposts(freelist, blsize);
-
-  //insert_fenceposts(freelist, blsize);
-  //header * fp = block->next;
-  //size_t fpsize = get_size(freelist);
-  //printf("fpsize = %ld\n", fpsize);
-
-  //size_t diff = blsize - asize;
- 
-  blsize = (int) blsize;
-  asize = (int) asize;
-
-  int diff = blsize - asize;
-
-  int flag = 0;
-  if((diff < 32) && (diff >= 0)) {
-	flag = 1;
-  } else if (diff >= 32) {
-	flag = 0;
-  } else if (diff < 0) {
-	flag = 2;
-  }*/
-//printf("bbbbbbb\n");
-// printf("flag = %d\n", flag);
-// printf("blsize = %ld\n", blsize);
-// printf("asize = %ld\n", asize);
- 
-
-
-
 
 bool helpAllocateChunk(){
   
@@ -494,33 +405,6 @@ static inline header * allocate_object(size_t raw_size) {
 
 //	}
 
-
-	/*
-  	if(flag == 2) {
-		for(i = 0; i < N_LISTS; i++) {
-			freelist = &freelistSentinels[i];
-			block = freelist->next;
-
-			size_t blocksize = get_size(block);
-			if((blocksize != 0) && (blocksize >= asize)) {
-				break;
-			}
-		}
-
-		blsize = get_size(block);
-		blsize = (int) blsize;
-		asize = (int) asize;
-
-		int diff = blsize - asize;
-
-		if((diff < 32) && (diff >= 0)) {
-			flag = 1;
-		} else if (diff >= 32) {
-			flag = 0;
-		}
-
-	}*/
-
 //printf("409 flag = %d\n", flag);
   block = freelist->next;
   header * hdr;
@@ -599,16 +483,6 @@ static inline header * allocate_object(size_t raw_size) {
 //		printf("break\n");
 //		break;
 	} /*else if(flag = 2) {
-//		printf("else\n");
-		header * new = allocate_chunk(ARENA_SIZE);
-		header * free = &freelistSentinels[N_LISTS - 1];
-		free->next = new;
-		free->prev = new;
-		new->next = free;
-		new->prev = free;
-		insert_os_chunk(new);	
-		hdr = new;
-		break;
 	}*/
 //	block = block->next;
  // }
@@ -639,7 +513,6 @@ static inline header * ptr_to_header(void * p) {
  * @param p The pointer returned to the user by a call to malloc
  */
 static inline void deallocate_object(void * p) {
-  // TODO implement deallocation
   //(void) p;
   //assert(false);
   //exit(1);
